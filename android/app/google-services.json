@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "728657355313",
+    "project_id": "neverout-e3e1e",
+    "storage_bucket": "neverout-e3e1e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728657355313:android:28aa71e2b1a4a7e9992b10",
+        "android_client_info": {
+          "package_name": "com.example.neverout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Li9mJ-bgQI5VOhk2e94u-6GfYy_0RcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
