@@ -1,6 +1,6 @@
-# neverout
+# NeverOut: AI Tracking Inventory App
 
-A new Flutter project.
+This AI-powered inventory assistant helps users track household essentials, groceries, and personal care products. The app ensures users never run out of important items using receipt scanning, smart usage estimation, and automated reminders. It predicts when products will be depleted, sends timely restock alerts, and suggests cost-effective reordering options—making household management effortless and more sustainable.
 
 ## Getting Started
 
