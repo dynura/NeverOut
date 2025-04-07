@@ -14,6 +14,8 @@ android {
     ndkVersion = "27.0.12077973"
 
     compileOptions {
+        // Enable core library desugaring
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -28,6 +30,12 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        
+        // TensorFlow Lite
+        aaptOptions {
+            noCompress("tflite")
+            noCompress("lite")
+        }
     }
 
     buildTypes {
@@ -36,7 +44,11 @@ android {
         }
     }
 }
+
 dependencies {
+    // Add desugaring dependency
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    
     // Add the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     
