@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:neverout/features/user_auth/presentation/widgets/app_theme.dart';
 import 'package:neverout/features/user_auth/presentation/widgets/app_navigation.dart';
@@ -27,95 +28,70 @@ class _InventoryPageState extends State<InventoryPage> {
   String searchQuery = '';
 
   final List<Map<String, dynamic>> allItems = [
-    {
-      'name': 'Apples',
-      'quantity': '6 pieces',
-      'category': 'Food',
-      'icon': Icons.apple,
-    },
+    {'name': 'Apples', 'quantity': '6 pieces', 'count': 6, 'category': 'Food'},
     {
       'name': 'Shampoo',
       'quantity': '400 ml',
+      'count': 1,
       'category': 'Personal Care',
-      'icon': Icons.shower,
     },
     {
       'name': 'Toothpaste',
       'quantity': '1 tube',
+      'count': 1,
       'category': 'Personal Care',
-      'icon': Icons.brush,
     },
     {
       'name': 'Orange Juice',
       'quantity': '1 litre',
+      'count': 1,
       'category': 'Beverages',
-      'icon': Icons.local_drink,
     },
-    {
-      'name': 'Bread',
-      'quantity': '2 loaves',
-      'category': 'Food',
-      'icon': Icons.bakery_dining,
-    },
+    {'name': 'Bread', 'quantity': '2 loaves', 'count': 2, 'category': 'Food'},
     {
       'name': 'Laundry Detergent',
       'quantity': '1 bottle',
+      'count': 1,
       'category': 'Cleaning',
-      'icon': Icons.local_laundry_service,
     },
     {
       'name': 'Floor Cleaner',
       'quantity': '2 bottles',
+      'count': 2,
       'category': 'Cleaning',
-      'icon': Icons.cleaning_services,
     },
     {
       'name': 'Dog Treats',
       'quantity': '500 g',
+      'count': 1,
       'category': 'Pet Supplies',
-      'icon': Icons.pets,
     },
     {
       'name': 'Cat Litter',
       'quantity': '5 kg',
+      'count': 5,
       'category': 'Pet Supplies',
-      'icon': Icons.pets,
     },
-    {
-      'name': 'Soda',
-      'quantity': '6 cans',
-      'category': 'Beverages',
-      'icon': Icons.local_drink,
-    },
-    {
-      'name': 'Cereal',
-      'quantity': '1 box',
-      'category': 'Food',
-      'icon': Icons.breakfast_dining,
-    },
+    {'name': 'Soda', 'quantity': '6 cans', 'count': 6, 'category': 'Beverages'},
+    {'name': 'Cereal', 'quantity': '1 box', 'count': 1, 'category': 'Food'},
     {
       'name': 'Hand Soap',
       'quantity': '2 bottles',
+      'count': 2,
       'category': 'Personal Care',
-      'icon': Icons.soap,
     },
     {
       'name': 'Tissues',
       'quantity': '3 boxes',
+      'count': 3,
       'category': 'Personal Care',
-      'icon': Icons.airline_seat_legroom_reduced,
     },
-    {
-      'name': 'Batteries',
-      'quantity': '8 AA',
-      'category': 'Others',
-      'icon': Icons.battery_full,
-    },
+    {'name': 'Batteries', 'quantity': '8 AA', 'count': 8, 'category': 'Others'},
     {
       'name': 'Light Bulbs',
       'quantity': '4 bulbs',
+      'count': 4,
       'category': 'Others',
-      'icon': Icons.lightbulb,
     },
   ];
 
@@ -237,61 +213,87 @@ class _InventoryPageState extends State<InventoryPage> {
       );
     }
 
-    return ListView.separated(
+    return ListView.builder(
       itemCount: items.length,
-      separatorBuilder: (context, index) => const Divider(height: 16),
       itemBuilder: (context, index) {
         final item = items[index];
-        return ListTile(
-          leading: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppTheme.primaryColor.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(item['icon'], color: AppTheme.primaryColor),
+        final daysLeft = Random().nextInt(10) + 1;
+        final isLowStock = item['count'] < 3;
+
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: AppTheme.primaryColor.withOpacity(0.95),
+            borderRadius: BorderRadius.circular(18),
           ),
-          title: Text(
-            item['name'],
-            style: AppTheme.bodyMedium().copyWith(fontWeight: FontWeight.bold),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    item['name'],
+                    style: AppTheme.bodyMedium().copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      'Categories',
+                      style: AppTheme.bodySmall().copyWith(
+                        color: AppTheme.primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                item['quantity'],
+                style: AppTheme.bodySmall().copyWith(color: Colors.white),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  if (isLowStock)
+                    _buildStatusTag('Low in stock', Colors.pink.shade300),
+                  const SizedBox(width: 8),
+                  _buildStatusTag('$daysLeft days left', Colors.white),
+                ],
+              ),
+            ],
           ),
-          subtitle: Text(item['category'], style: AppTheme.bodySmall()),
-          trailing: Text(item['quantity'], style: AppTheme.bodyMedium()),
-          onTap: () => _showItemDetails(item),
         );
       },
     );
   }
 
-  void _showItemDetails(Map<String, dynamic> item) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            title: Text(item['name'], style: AppTheme.headingMedium()),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  leading: Icon(Icons.category, color: AppTheme.primaryColor),
-                  title: Text('Category', style: AppTheme.bodyMedium()),
-                  subtitle: Text(item['category']),
-                ),
-                ListTile(
-                  leading: Icon(Icons.scale, color: AppTheme.primaryColor),
-                  title: Text('Quantity', style: AppTheme.bodyMedium()),
-                  subtitle: Text(item['quantity']),
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('Close', style: AppTheme.bodyMedium()),
-              ),
-            ],
-          ),
+  Widget _buildStatusTag(String label, Color bgColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        label,
+        style: AppTheme.bodySmall().copyWith(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 
