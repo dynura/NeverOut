@@ -6,6 +6,25 @@ import 'package:neverout/features/user_auth/presentation/pages/home_page.dart';
 import 'package:neverout/features/user_auth/presentation/pages/add_page.dart';
 import 'package:neverout/features/user_auth/presentation/pages/profile_page.dart';
 
+// ✅ Moved outside the widget so it's globally accessible
+final List<Map<String, dynamic>> allItems = [
+  {'name': 'Apples', 'quantity': '6 pieces', 'count': 6, 'category': 'Food'},
+  {'name': 'Shampoo', 'quantity': '400 ml', 'count': 1, 'category': 'Personal Care'},
+  {'name': 'Toothpaste', 'quantity': '1 tube', 'count': 1, 'category': 'Personal Care'},
+  {'name': 'Orange Juice', 'quantity': '1 litre', 'count': 1, 'category': 'Beverages'},
+  {'name': 'Bread', 'quantity': '2 loaves', 'count': 2, 'category': 'Food'},
+  {'name': 'Laundry Detergent', 'quantity': '1 bottle', 'count': 1, 'category': 'Cleaning'},
+  {'name': 'Floor Cleaner', 'quantity': '2 bottles', 'count': 2, 'category': 'Cleaning'},
+  {'name': 'Dog Treats', 'quantity': '500 g', 'count': 1, 'category': 'Pet Supplies'},
+  {'name': 'Cat Litter', 'quantity': '5 kg', 'count': 5, 'category': 'Pet Supplies'},
+  {'name': 'Soda', 'quantity': '6 cans', 'count': 6, 'category': 'Beverages'},
+  {'name': 'Cereal', 'quantity': '1 box', 'count': 1, 'category': 'Food'},
+  {'name': 'Hand Soap', 'quantity': '2 bottles', 'count': 2, 'category': 'Personal Care'},
+  {'name': 'Tissues', 'quantity': '3 boxes', 'count': 3, 'category': 'Personal Care'},
+  {'name': 'Batteries', 'quantity': '8 AA', 'count': 8, 'category': 'Others'},
+  {'name': 'Light Bulbs', 'quantity': '4 bulbs', 'count': 4, 'category': 'Others'},
+];
+
 class InventoryPage extends StatefulWidget {
   const InventoryPage({super.key});
 
@@ -27,81 +46,12 @@ class _InventoryPageState extends State<InventoryPage> {
   String selectedCategory = 'All';
   String searchQuery = '';
 
-  final List<Map<String, dynamic>> allItems = [
-    {'name': 'Apples', 'quantity': '6 pieces', 'count': 6, 'category': 'Food'},
-    {
-      'name': 'Shampoo',
-      'quantity': '400 ml',
-      'count': 1,
-      'category': 'Personal Care',
-    },
-    {
-      'name': 'Toothpaste',
-      'quantity': '1 tube',
-      'count': 1,
-      'category': 'Personal Care',
-    },
-    {
-      'name': 'Orange Juice',
-      'quantity': '1 litre',
-      'count': 1,
-      'category': 'Beverages',
-    },
-    {'name': 'Bread', 'quantity': '2 loaves', 'count': 2, 'category': 'Food'},
-    {
-      'name': 'Laundry Detergent',
-      'quantity': '1 bottle',
-      'count': 1,
-      'category': 'Cleaning',
-    },
-    {
-      'name': 'Floor Cleaner',
-      'quantity': '2 bottles',
-      'count': 2,
-      'category': 'Cleaning',
-    },
-    {
-      'name': 'Dog Treats',
-      'quantity': '500 g',
-      'count': 1,
-      'category': 'Pet Supplies',
-    },
-    {
-      'name': 'Cat Litter',
-      'quantity': '5 kg',
-      'count': 5,
-      'category': 'Pet Supplies',
-    },
-    {'name': 'Soda', 'quantity': '6 cans', 'count': 6, 'category': 'Beverages'},
-    {'name': 'Cereal', 'quantity': '1 box', 'count': 1, 'category': 'Food'},
-    {
-      'name': 'Hand Soap',
-      'quantity': '2 bottles',
-      'count': 2,
-      'category': 'Personal Care',
-    },
-    {
-      'name': 'Tissues',
-      'quantity': '3 boxes',
-      'count': 3,
-      'category': 'Personal Care',
-    },
-    {'name': 'Batteries', 'quantity': '8 AA', 'count': 8, 'category': 'Others'},
-    {
-      'name': 'Light Bulbs',
-      'quantity': '4 bulbs',
-      'count': 4,
-      'category': 'Others',
-    },
-  ];
-
   List<Map<String, dynamic>> get filteredItems {
     return allItems.where((item) {
       final matchesCategory =
           selectedCategory == 'All' || item['category'] == selectedCategory;
-      final matchesSearch = item['name'].toLowerCase().contains(
-        searchQuery.toLowerCase(),
-      );
+      final matchesSearch =
+          item['name'].toLowerCase().contains(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     }).toList();
   }
@@ -139,11 +89,10 @@ class _InventoryPageState extends State<InventoryPage> {
         onTap: (index) => _handleNavigation(index, context),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddPage()),
-            ),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AddPage()),
+        ),
         backgroundColor: AppTheme.primaryColor,
         child: const Icon(Icons.add, color: Colors.white),
       ),
@@ -180,22 +129,21 @@ class _InventoryPageState extends State<InventoryPage> {
   Widget _buildCategoryChips() {
     return Wrap(
       spacing: 8,
-      children:
-          categories.map((category) {
-            final isSelected = selectedCategory == category;
-            return ChoiceChip(
-              label: Text(category),
-              selected: isSelected,
-              onSelected: (bool selected) {
-                setState(() {
-                  selectedCategory = category;
-                });
-              },
-              selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-              backgroundColor: AppTheme.secondColor.withOpacity(0.1),
-              labelStyle: AppTheme.bodyMedium(),
-            );
-          }).toList(),
+      children: categories.map((category) {
+        final isSelected = selectedCategory == category;
+        return ChoiceChip(
+          label: Text(category),
+          selected: isSelected,
+          onSelected: (bool selected) {
+            setState(() {
+              selectedCategory = category;
+            });
+          },
+          selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+          backgroundColor: AppTheme.secondColor.withOpacity(0.1),
+          labelStyle: AppTheme.bodyMedium(),
+        );
+      }).toList(),
     );
   }
 
@@ -241,16 +189,13 @@ class _InventoryPageState extends State<InventoryPage> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      'Categories',
+                      item['category'],
                       style: AppTheme.bodySmall().copyWith(
                         color: AppTheme.primaryColor,
                         fontWeight: FontWeight.w600,
