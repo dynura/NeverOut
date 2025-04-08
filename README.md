@@ -1,6 +1,6 @@
 # NeverOut: AI Tracking Inventory App
 
-This AI-powered inventory assistant helps users track household essentials, groceries, and personal care products. The app ensures users never run out of important items using receipt scanning, smart usage estimation, and automated reminders. It predicts when products will be depleted, sends timely restock alerts, and suggests cost-effective reordering options—making household management effortless and more sustainable.
+This AI-powered inventory assistant helps users track household essentials, groceries, and personal care products. The app ensures users never run out of essential items using receipt scanning, smart usage estimation, and automated reminders. It predicts when products will be depleted and sends timely restock alerts, making household management effortless and more sustainable.
 
 ## Table of Contents
 
@@ -32,12 +32,12 @@ To set up the project locally, follow these steps:
   flutter pub get
   ```
 
-3. Set up Firebase
+3. **Set up Firebase**
     - Follow Firebase's Flutter setup guide.
     - Add google-services.json (Android) and GoogleService-Info.plist (iOS) into their respective platform folders.
     - Enable necessary Firebase services (Authentication, Firestore, Storage, etc.)
 
-4. Run build
+4. **Run build**
    ```bash
    flutter run
    ```
