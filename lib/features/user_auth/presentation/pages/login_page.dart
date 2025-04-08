@@ -9,7 +9,7 @@ import 'package:neverout/features/user_auth/presentation/pages/email_verificatio
 import 'package:neverout/features/user_auth/presentation/pages/forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();

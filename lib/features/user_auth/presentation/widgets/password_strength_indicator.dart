@@ -7,9 +7,9 @@ class PasswordStrengthIndicator extends StatelessWidget {
   final String password;
 
   const PasswordStrengthIndicator({
-    Key? key,
+    super.key,
     required this.password,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:neverout/features/user_auth/presentation/widgets/app_theme.dart'
 import 'package:neverout/features/user_auth/presentation/pages/home_page.dart';
 
 class EmailVerificationPage extends StatefulWidget {
-  const EmailVerificationPage({Key? key}) : super(key: key);
+  const EmailVerificationPage({super.key});
 
   @override
   State<EmailVerificationPage> createState() => _EmailVerificationPageState();

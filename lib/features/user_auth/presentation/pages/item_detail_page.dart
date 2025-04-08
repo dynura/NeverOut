@@ -8,10 +8,10 @@ class ItemDetailPage extends StatefulWidget {
   final bool isEditing;
   
   const ItemDetailPage({
-    Key? key, 
+    super.key, 
     required this.item, 
     this.isEditing = false,
-  }) : super(key: key);
+  });
 
   @override
   State<ItemDetailPage> createState() => _ItemDetailPageState();

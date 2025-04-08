@@ -8,7 +8,7 @@ import 'package:neverout/features/user_auth/presentation/pages/email_verificatio
 import 'package:neverout/features/user_auth/presentation/widgets/password_strength_indicator.dart';
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  const RegistrationPage({super.key});
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
@@ -25,7 +25,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool _agreeToTerms = false;
   bool _isLoading = false;
   bool _isPasswordValid = false;
-  Map<String, bool> _passwordCriteria = {
+  final Map<String, bool> _passwordCriteria = {
     'length': false,
     'uppercase': false,
     'lowercase': false,

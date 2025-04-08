@@ -8,7 +8,7 @@ import 'package:neverout/features/user_auth/presentation/pages/profile_page.dart
 import 'package:neverout/features/user_auth/presentation/widgets/app_navigation.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

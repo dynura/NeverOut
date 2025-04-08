@@ -14,7 +14,7 @@ import 'package:neverout/features/user_auth/presentation/pages/add_page.dart';
 import 'package:neverout/features/user_auth/presentation/pages/inventory_page.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -371,10 +371,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: double.infinity,
                         child: OutlinedButton(
                           style: ButtonStyle(
-                            side: MaterialStateProperty.all(
+                            side: WidgetStateProperty.all(
                               const BorderSide(color: AppTheme.primaryColor),
                             ),
-                            padding: MaterialStateProperty.all(
+                            padding: WidgetStateProperty.all(
                               const EdgeInsets.symmetric(vertical: 16),
                             ),
                           ),

@@ -7,7 +7,7 @@ import 'package:neverout/features/user_auth/presentation/pages/item_detail_page.
 class ViewItemsPage extends StatefulWidget {
   final List<Map<String, dynamic>> items;
   
-  const ViewItemsPage({Key? key, required this.items}) : super(key: key);
+  const ViewItemsPage({super.key, required this.items});
 
   @override
   State<ViewItemsPage> createState() => _ViewItemsPageState();

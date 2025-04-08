@@ -58,9 +58,6 @@ class ReceiptProcessor {
   
   bool _isNumeric(String str) {
     // Check if string is numeric
-    if (str == null) {
-      return false;
-    }
     return double.tryParse(str.replaceAll(RegExp(r'[^\d.]'), '')) != null;
   }
   

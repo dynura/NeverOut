@@ -6,7 +6,7 @@ import 'package:neverout/features/user_auth/presentation/widgets/app_theme.dart'
 class SplashScreen extends StatefulWidget {
   final Widget child;
 
-  const SplashScreen({Key? key, required this.child}) : super(key: key);
+  const SplashScreen({super.key, required this.child});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();

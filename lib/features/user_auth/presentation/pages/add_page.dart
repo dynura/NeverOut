@@ -14,7 +14,7 @@ import 'package:neverout/features/receipt_processing/repositories/item_repositor
 import 'package:neverout/features/receipt_processing/services/reminder_service.dart';
 
 class AddPage extends StatefulWidget {
-  const AddPage({Key? key}) : super(key: key);
+  const AddPage({super.key});
 
   @override
   State<AddPage> createState() => _AddPageState();

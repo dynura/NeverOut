@@ -5,7 +5,7 @@ import 'package:neverout/features/user_auth/presentation/widgets/app_navigation.
 import 'package:neverout/features/user_auth/presentation/pages/view_items_page.dart';
 
 class ManualItemEntryPage extends StatefulWidget {
-  const ManualItemEntryPage({Key? key}) : super(key: key);
+  const ManualItemEntryPage({super.key});
 
   @override
   State<ManualItemEntryPage> createState() => _ManualItemEntryPageState();
